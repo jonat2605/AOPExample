@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: AOPExample
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+  datasource:
+    url: jdbc:mysql://localhost:33060/DondeNixonFrutasVerduras
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+project:
+  config:
+    cors:
+      allowed:
+        origins: '*'
