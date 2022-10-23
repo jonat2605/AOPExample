@@ -1,10 +1,12 @@
 package com.bpop.kaisen.services;
 
 import com.bpop.kaisen.models.dto.DataInfoRes;
+import com.bpop.kaisen.models.dto.ProductInfoDTO;
 import com.bpop.kaisen.models.entities.Product;
 import com.bpop.kaisen.repositories.ProductRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,19 +15,20 @@ import java.util.List;
 
 @Service
 @Log4j2
+@Component
 public class ProductService {
 
     @Autowired
     ProductRepository productRepository;
 
-    public DataInfoRes createAndUpdateProduct(Product product) {
+    public DataInfoRes createAndUpdateProduct(ProductInfoDTO product) {
         try {
-            Product productSearch = productRepository.findById(product.getId()).orElseGet(() -> null);
+            Product productSearch = productRepository.findById(product.getProduct().getId()).orElseGet(() -> null);
             if (productSearch == null) {
-                productRepository.save(product);
+                productRepository.save(product.getProduct());
                 return DataInfoRes.builder().statusCode(201).responseStatus("Producto creado satisfactoriamente").build();
             } else {
-                productSearch = Product.builder().id(productSearch.getId()).name(product.getName()).price(product.getPrice()).quantity(product.getQuantity()).build();
+                productSearch = Product.builder().id(productSearch.getId()).name(product.getProduct().getName()).price(product.getProduct().getPrice()).quantity(product.getProduct().getQuantity()).build();
                 productRepository.save(productSearch);
                 return DataInfoRes.builder().statusCode(201).responseStatus("Producto actualizado satisfactoriamente").build();
             }
