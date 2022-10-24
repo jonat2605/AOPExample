@@ -15,7 +15,6 @@ import java.util.List;
 
 @Service
 @Log4j2
-@Component
 public class ProductService {
 
     @Autowired
