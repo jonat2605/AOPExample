@@ -1,6 +1,7 @@
 package com.bpop.kaisen.controllers;
 
 import com.bpop.kaisen.models.dto.DataInfoRes;
+import com.bpop.kaisen.models.dto.ProductInfoDTO;
 import com.bpop.kaisen.models.entities.Product;
 import com.bpop.kaisen.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping(path = "/createUpdate")
-    public ResponseEntity<DataInfoRes> createUpdateProduct(@RequestBody Product product) {
+    public ResponseEntity<DataInfoRes> createUpdateProduct(@RequestBody ProductInfoDTO product) {
         return new ResponseEntity<>(productService.createAndUpdateProduct(product), HttpStatus.CREATED);
     }
 

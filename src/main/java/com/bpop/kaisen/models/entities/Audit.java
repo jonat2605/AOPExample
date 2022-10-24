@@ -1,11 +1,16 @@
 package com.bpop.kaisen.models.entities;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.Date;
 
 @Data
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "audit_info")
 public class Audit {
 
@@ -14,10 +19,10 @@ public class Audit {
     private Integer id;
 
     @Column(name = "INSERT_DATE")
-    private Calendar date;
+    private Date date;
 
-    @Column(name = "USER_NAME_INSERT")
-    private String userName;
+    @Column(name = "USER_ID")
+    private Long userId;
 
     @Column(name = "PRODUCT_NAME")
     private String productName;
